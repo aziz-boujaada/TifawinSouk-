@@ -60,24 +60,39 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product )
     {
-        //
+        $categories = Categories::all();
+       return view('products.edit' , compact('product' , 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Product $product , Request $request)
     {
-        //
+         $data = $request->validate([
+               'name' => 'required|string|min:3' ,
+               'description' => 'nullable|string',
+               'price' => 'required|numeric',
+               'stock' => 'required|integer',
+               'category_id' => 'required|exists:categories,id',
+               'image_path' => 'nullable|url'
+        ]);
+
+        $reference =  'REF-' . uniqid() . rand(100 ,999);
+        $data['reference'] = $reference ;
+
+        $product->update($data);
+        return redirect()->route('products.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }
