@@ -26,9 +26,9 @@
 
 
             <nav class="flex gap-4">
-                <a href="{{ route('products.index') }}"
+                <a href="{{ route('categories.index') }}"
                     class="px-3 py-2 rounded-md hover:bg-gray-800 transition">
-                    products
+                    Categories
                 </a>
 
                 <a href="{{ route('products.create') }}"

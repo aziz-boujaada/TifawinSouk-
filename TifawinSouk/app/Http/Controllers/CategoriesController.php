@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -47,8 +48,10 @@ class CategoriesController extends Controller
      * Display the specified resource.
      */
     public function show(Categories $category)
+
     {
-        return view('categories.show' , compact('category'));
+        $products = Product::all();
+        return view('categories.show' , compact('category' , 'products'));
     }
 
     /**
