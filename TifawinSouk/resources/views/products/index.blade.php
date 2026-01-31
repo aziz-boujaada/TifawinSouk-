@@ -41,6 +41,7 @@
     </header>
 
     <div class="overflow-y-auto p-10 ">
+        <button class="bg-gary-900 p-2 rounded-md sahdow-md "><a href="{{ route ('products.create')}}">Add New Product</a></button>
         <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg mt-12">
             <thead class="bg-gray-100">
                 <tr>
@@ -50,6 +51,8 @@
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 uppercase">Description</th>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 uppercase">price</th>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 uppercase">stock</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 uppercase">Category</th>
+
 
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 uppercase">Actions</th>
                 </tr>
@@ -63,7 +66,7 @@
                     <td class="px-6 py-4 text-sm text-gray-900">{{ $product->description }}</td>
                     <td class="px-6 py-4 text-sm text-gray-900">{{ $product->price }}</td>
                     <td class="px-6 py-4 text-sm text-gray-900">{{ $product->stock }}</td>
-
+                    <td class="px-6 py-4 text-sm text-gray-900">{{ $product->category ? $product->category->name : 'No Category'}}</td>
 
                     <td class="px-6 py-4">
                         <div class="flex gap-2">

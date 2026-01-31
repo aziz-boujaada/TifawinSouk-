@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Models\Categories;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -12,7 +13,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Products::all();
+        $products = Product::all();
         return view('products.index', compact('products'));
     }
 
@@ -21,17 +22,31 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = Categories::all();
+        return view('products.create' , compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
+    //regex:/^\.(jpeg|jpg|png|webp)$/i
     public function store(Request $request)
     {
         $data = $request->validate([
-
+               'name' => 'required|string|min:3' ,
+               'description' => 'nullable|string',
+               'price' => 'required|numeric',
+               'stock' => 'required|integer',
+               'category_id' => 'required|exists:categories,id',
+               'image_path' => 'nullable|url'
         ]);
+
+        $reference =  'REF-' . uniqid() . rand(1000 ,9999);
+        $data['reference'] = $reference ;
+
+        Product::create($data);
+        return redirect()->route('products.index');
     }
 
     /**
