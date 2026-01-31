@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -14,7 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         return view('categories.index', compact('categories'));
     }
 
@@ -39,7 +39,7 @@ class CategoriesController extends Controller
         $slug = Str::slug($data['name']);
         $data['slug'] = $slug;
 
-        Categories::create($data);
+        Category::create($data);
 
         return redirect()->route('categories.index');
     }
@@ -47,24 +47,24 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categories $category)
+    public function show(Category $category)
 
     {
-        $products = Product::all();
+        $products = $category->prouducts;
         return view('categories.show' , compact('category' , 'products'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categories $category) {
+    public function edit(Category $category) {
         return view('categories.edit' , compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categories $category)
+    public function update(Request $request, Category $category)
     {
         $data = $request->validate([
             'name' => 'required|max:255|string',
@@ -83,7 +83,7 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categories $category)
+    public function destroy(Category $category)
     {
         $category->delete();
     

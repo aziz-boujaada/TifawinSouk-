@@ -36,18 +36,20 @@
 
             <!-- list of product foreach category -->
             <div class="mt-6 text-center">
-               <span class=" text-center text-md font-bold text-gray-600"> Products of this Category</span>
-                @foreach($products as $product)
-                @if($product->category_id === $category->id )
-                    <div class="bg-gray-100 p-2 rounded-md shadow-lg mt-2 flex justify-betwen gap-4">
-                        <p><span class="mt-6 text-center text-md font-bold text-gray-600">Product Name :</span> {{$product->name}}</p>
-                        <p><span class="mt-6 text-center text-md font-bold text-gray-600">Price :</span> {{$product->price}}</p>
-                        <p><span class="mt-6 text-center text-md font-bold text-gray-600">Stock : </span> {{$product->stock}}</p>
-                        <a href="{{route ('products.show' , $product)}}" class="text-yellow-600"><i class="fa-regular fa-eye"></i></a>
-                    </div>
-                @endif
+                <span class=" text-center text-md font-bold text-gray-600"> Products of this Category</span>
+                @forelse($products as $product)
 
-                @endforeach
+                <div class="bg-gray-100 p-2 rounded-md shadow-lg mt-2 flex justify-between gap-4">
+                    <p><span class="mt-6 text-center text-md font-bold text-gray-600">Product Name :</span> {{$product->name}}</p>
+                    <p><span class="mt-6 text-center text-md font-bold text-gray-600">Price :</span> {{$product->price}}</p>
+                    <p><span class="mt-6 text-center text-md font-bold text-gray-600">Stock : </span> {{$product->stock}}</p>
+                    <a href="{{route ('products.show' , $product)}}" class="text-yellow-600"><i class="fa-regular fa-eye"></i></a>
+                </div>
+
+                @empty
+                <p class="bg-red-600 p-2 rounded-md shadow-lg text-white mt-4">There is no product in  <span class="text-gray-800 font-bold text-md">{{$category->name}}</span></p>
+
+                @endforelse
             </div>
 
             <div class="mt-6 text-center">
