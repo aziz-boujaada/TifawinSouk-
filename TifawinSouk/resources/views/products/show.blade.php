@@ -5,53 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Product Details</title>
 </head>
 
-<body>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="w-full max-w-xl bg-white rounded-xl p-6 shadow-lg">
+<body class="bg-gray-100">
 
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">
-                Products Details
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="w-full max-w-3xl bg-white rounded-2xl p-8 shadow-2xl">
+
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center border-b pb-4">
+                Product Details
             </h2>
 
-            <div class="space-y-3 text-gray-700 ">
-                <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+
+               
+                <div class="space-y-3">
                     <p>
-                        <span class="font-medium text-gray-900">Product Name:</span>
-                        {{ $product->name }}
+                        <span class="font-semibold text-gray-900">Product Name:</span>
+                        <span class="text-gray-600">{{ $product->name }}</span>
                     </p>
 
                     <p>
-                        <span class="font-medium text-gray-900">Description:</span>
-                        {{ $product->description }}
+                        <span class="font-semibold text-gray-900">Description:</span>
+                        <span class="text-gray-600">{{ $product->description ?? 'No description' }}</span>
                     </p>
 
-                    <p class="leading-relaxed">
-                        <span class="font-medium text-gray-900">Price:</span>
-                        {{ $product->price }}
+                    <p>
+                        <span class="font-semibold text-gray-900">Price:</span>
+                        <span class="text-gray-600">${{ $product->price }}</span>
                     </p>
 
-                    <p class="leading-relaxed">
-                        <span class="font-medium text-gray-900">Stock:</span>
-                        {{ $product->stock }}
+                    <p>
+                        <span class="font-semibold text-gray-900">Stock:</span>
+                        <span class="text-gray-600">{{ $product->stock }}</span>
+                    </p>
+
+                    <p>
+                        <span class="font-semibold text-gray-900">Category:</span>
+                        <span class="text-gray-600">{{ $product->category?->name ?? 'No Category' }}</span>
                     </p>
                 </div>
-                <div>
-                    <img src="{{$product->image_path}}" alt="{{$product->name}} image" class="rounded-lg shadow-lg">
+
+              
+                <div class="flex items-center justify-center">
+                    <img src="{{ $product->image_path }}" alt="{{ $product->name }} image"
+                        class="rounded-xl shadow-xl w-full object-cover max-h-80 hover:scale-105 transition-transform">
                 </div>
+
             </div>
 
-            <div class="mt-6 text-center">
+            <div class="mt-8 text-center">
                 <a href="{{ route('products.index') }}"
-                    class="inline-block px-5 py-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition">
-                    ⬅ Back to products
+                    class="inline-block px-6 py-3 rounded-xl bg-gray-800 text-white hover:bg-gray-700 transition font-medium">
+                     Back to Products
                 </a>
             </div>
 
         </div>
     </div>
+
 </body>
 
 </html>
