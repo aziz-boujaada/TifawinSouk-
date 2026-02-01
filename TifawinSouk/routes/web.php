@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/products', ProductsController::class);
+    Route::get('/users' , [UsersController::class , 'index'])->name('get-users');
 });
 
 require __DIR__ . '/auth.php';

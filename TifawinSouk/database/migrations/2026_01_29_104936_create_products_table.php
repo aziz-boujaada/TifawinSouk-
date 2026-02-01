@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name' , 50);
-            $table->string('reference');
+            $table->string('reference')->unique(); //must be like this REF-random
             $table->float('price');
             $table->integer('stock');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();

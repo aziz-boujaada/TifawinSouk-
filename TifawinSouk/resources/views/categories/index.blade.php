@@ -43,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                    @foreach($categories as $category)
+                    @forelse($categories as $category)
                     <tr class="hover:bg-gray-700">
                         <td class="px-6 py-4 text-sm text-white">{{ $category->id }}</td>
                         <td class="px-6 py-4 text-sm text-white">{{ $category->name }}</td>
@@ -61,7 +61,11 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    @empty 
+                    <div class=" bg-red-500 p-6 rounded-md shadow-lg my-2">
+                        <p class="font-medium text-white">There's No Categories</p>
+                    </div>
+                    @endforelse
                 </tbody>
             </table>
 

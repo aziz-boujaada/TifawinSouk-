@@ -97,7 +97,7 @@
                 <div class="flex justify-between items-center pt-4">
                     <a href="{{ route('products.index') }}"
                         class="text-gray-600 hover:underline">
-                        ⬅ Back
+                         Back
                     </a>
 
                     <button

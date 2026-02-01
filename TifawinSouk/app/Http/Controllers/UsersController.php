@@ -9,17 +9,15 @@ use Illuminate\Http\Request;
 // use Illuminate\Database\Eloquent\Builder;
 //  use Illuminate\Database\Eloquent\Collection;
 
-class ProductsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $productsCount = Product::count();
-        $categoriesCount = Category::count();
-        $usersCount = User::count();
-        return view('dashboard', compact('productsCount' , 'categoriesCount' , 'usersCount'));
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
  
